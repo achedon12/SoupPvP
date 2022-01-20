@@ -13,14 +13,14 @@ class PlayerEvents implements Listener{
 
         $player = $event->getPlayer();
         $item = $event->getItem();
-        if($item->getId() == VanillaItems::BEETROOT_SOUP()->getId()){
+        if($item instanceof (VanillaItems::BEETROOT_SOUP())){
             if($player->getGamemode() === GameMode::SURVIVAL() || $player->getGamemode() === GameMode::ADVENTURE()){
                 if($player->getHealth() == 20){
                     $player->sendMessage("Your life is complete");
                 }else{
-                        $player->setHealth($player->getHealth() + 3);
-                        $player->sendMessage("You have been treated");
-                        $player->getInventory()->removeItem($player->getInventory()->getItemInHand());
+                    $player->setHealth($player->getHealth() + 3);
+                    $player->sendMessage("You have been treated");
+                    $player->getInventory()->removeItem($player->getInventory()->getItemInHand());
                 }
             }else{
                 $player->sendMessage("Please be in survival gamemode to use this soup");
